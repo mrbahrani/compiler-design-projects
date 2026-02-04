@@ -27,8 +27,9 @@ add_subdirectory(include/Medical)
 add_subdirectory(lib/Medical)
 # add_subdirectory(tools/medical-opt) (will be added later)
 
+add_subdirectory(tools/medical-opt)
 
- set_target_properties(MLIRMedicalDialect PROPERTIES
+set_target_properties(MLIRMedicalDialect PROPERTIES
          C_VISIBILITY_PRESET default
          CXX_VISIBILITY_PRESET default
          VISIBILITY_INLINES_HIDDEN OFF
