@@ -3,6 +3,8 @@
 //===-----------------------------------------------===//
 
 include "mlir/IR/OpBase.td"
+include "mlir/Bytecode/BytecodeOpInterface.td"
+
 
 def Medical_Dialect : Dialect {
   let name = "medical";
@@ -13,4 +15,10 @@ def Medical_Dialect : Dialect {
   }];
 
   let cppNamespace = "::mlir::medical";
+  let extraClassDeclaration = [{
+      // This allows the dialect to use the new Bytecode format
+//      void initialize();
+    }];
+
+//    let hasBytecodeInterface = 1;
 }

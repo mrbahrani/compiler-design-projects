@@ -1,13 +1,14 @@
-#ifndef MEDICAL_MEDICALOPS_H
-#define MEDICAL_MEDICALOPS_H
+#ifndef MEDICAL_OPS_H
+#define MEDICAL_OPS_H
 
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/OpDefinition.h"
 #include "mlir/Interfaces/SideEffectInterfaces.h"
-#include "Medical/MedicalDialect.h"
 
-// Include the generated operation declarations
+// IMPORTANT: Include this BEFORE the .h.inc file
+#include "mlir/Bytecode/BytecodeOpInterface.h"
+
 #define GET_OP_CLASSES
 #include "Medical/MedicalOps.h.inc"
 
-#endif // MEDICAL_MEDICALOPS_H
+#endif // MEDICAL_OPS_H

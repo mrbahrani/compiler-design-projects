@@ -9,5 +9,7 @@ target_link_libraries(medical-opt
         MLIRParser           # To read .mlir files
         MLIRSupport          # Basic utilities
         MLIROptLib       # The 'Main' logic we called in C++
-        MLIRInitAllDialects  # If you included registerAllDialects
+#        MLIRInitAllDialects  # If you included registerAllDialects
+        MLIRRegisterAllDialects
+        MLIRSupport
 )

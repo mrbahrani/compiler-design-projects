@@ -1,22 +1,18 @@
-include "mlir/IR/OpBase.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
-//include "mlir/IR/CommonTypeConstraints.td"
-
 include "MedicalDialect.td"
-
-
+include "mlir/Bytecode/BytecodeOpInterface.td"
 // Base class for ops in this dialect to save typing
 class Medical_Op<string mnemonic, list<Trait> traits = []> :
     Op<Medical_Dialect, mnemonic, traits>;
 
-def NormalizeOp : Medical_Op<"normalize", [
-    Pure,
-    AllTypesMatch<["input", "output"]>
-  ]> {
-  let summary = "Normalizes sensor input.";
+def NormalizeOp : Medical_Op<"normalize", [Pure]> {
+  let summary = "Normalizes sensor input within a [0, 1] range.";
+
+  // Arguments can be Operands (values in the IR) or Attributes (compile-time constants)
   let arguments = (ins F32Tensor:$input, F32Attr:$scale_factor);
+
   let results = (outs F32Tensor:$output);
 
-  // We add 'type($output)' to the format to make it explicit
-  let assemblyFormat = "$input attr-dict `:` type($input)";
+  // This tells MLIR to generate a standard assembly format so we can read/write it
+  let assemblyFormat = "$input attr-dict `:` type($input) `->` type($output)";
 }
